@@ -1,0 +1,38 @@
+{%extends 'layout.html'%}
+{%block content%}
+    {%for  content in contents%}
+    <div class="jumbotron">
+        <h3>{{content.title}}</h3>
+        <hr/>
+        <p style="font-size: 10px">
+            <span style="background:#393939; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-user"></span><span>{{content.user.username}}</span></span>&nbsp;
+            <span style="background:#FFC219; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-time"> </span><span>{{content.addTime|date('Y-m-d H:i:s',-8*60)}}</span></span>&nbsp;
+            <span style="background:#E32551; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-eye-open"> </span><span>({{content.views}})</span></span>&nbsp;
+            <span style="background:#73C8A9; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-comment"> </span><span>({{content.comments.length}})</span></span>
+        </p>
+        <p style="font-size: 15px">{{content.description}}</p>
+        <p><a class="btn btn-primary btn-sm" href="/view?contentId={{content.id}}" role="button">查看全文</a></p>
+    </div>
+    {%endfor%}
+    <nav>
+        <ul class="pager">
+            {%if page<=1%}
+            <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span>没有上一页了</a></li>
+            {%else%}
+            <li class="previous"><a href="/?category={{category}}&page={{page-1}}"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+            {%endif%}
+
+            {%if pages>0%}
+            <li>
+                {{page}}/{{pages}}
+            </li>
+            {%endif%}
+
+            {%if page>= pages%}
+            <li class="next"><a href="#">已经是最后一页了 <span aria-hidden="true">&rarr;</span></a></li>
+            {%else%}
+            <li class="next"><a href="/?category={{category}}&page={{page+1}}">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+            {%endif%}
+        </ul>
+    </nav>
+{%endblock%}

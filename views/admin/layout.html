@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>后台管理</title>
+    <!--编辑器引入-->
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-21475122-5']);
+        _gaq.push(['_setCustomVar', 1, 'Repo', 'lepture/editor']);
+        _gaq.push(['_trackPageview']);
+        _gaq.push(['_trackPageLoadTime']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            if (location.port) {
+                return;
+            }
+            ga.src = '/public/editor/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <script src="/public/editor/marked.js"></script>
+    <script src="/public/editor/editor.js"></script>
+    <link rel="stylesheet" href="/public/editor/editor.css"/>
+
+    <!-- Bootstrap -->
+    <link href="/public/css/bootstrap.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="/public/js/html5shiv.min.js"></script>
+    <script src="/public/js/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">body{padding:0;margin:0;background-color:#f9f9f7;}.editor-wrapper{max-width:680px;padding:10px;margin:60px auto;}</style>
+</head>
+<body>
+
+<!--顶部导航条-->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/admin">后台管理</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/admin/user">用户管理 <span class="sr-only">(current)</span></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分类管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/admin/category">分类管理首页</a></li>
+                        <li><a href="/admin/category/add">分类管理添加</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">内容管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/admin/content">内容管理首页</a></li>
+                        <li><a href="/admin/content/add">内容管理添加</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{userInfo.username}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/">退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid">
+    {%block main%}{%endblock%}
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/public/js/jquery-1.11.3.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/public/js/bootstrap.js"></script>
+</body>
+</html>

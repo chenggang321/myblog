@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>title</title>
+    <link rel="stylesheet" href="/public/css/main.css"/>
+</head>
+<body>
+    <h1>欢迎光临我的博客！！</h1>
+
+    {%if userInfo._id%}
+    <div id="userInfo">
+        <div>用户信息</div>
+        <div>{{userInfo.username}}</div>
+        {%if userInfo.isAdmin%}
+        <div>
+            <span>你好,管理员！</span>
+            <a href="/admin">进入管理</a>
+        </div>
+        {%else%}
+        <div>你好欢迎来到我的博客！</div>
+        {%endif%}
+        <div><a href="javascript:;" id="logout">退出</a></div>
+    </div>
+    {%else%}
+    <form action="" id="loginBox">
+        <h3>登陆</h3>
+        <span>用户：</span><input type="text" name="username"/><br/>
+        <span>密码：</span><input type="password" name="password"/><br/>
+        <input type="button" value="登陆"/>
+        <p class="colWarning"></p>
+        <!--<input type="button" value="去注册" class="colMint"/>-->
+        <a href="javascript:;" class="colMint">去注册</a>
+    </form>
+    <form action=""id="registerBox"style="display: none">
+        <h3>注册</h3>
+        <span>用户：</span><input type="text" name="username"/><br/>
+        <span>密码：</span><input type="password" name="password"/><br/>
+        <span>确认：</span><input type="password"name="repassword"/><br/>
+        <input type="button" value="注册"/>
+        <p class="colWarning"></p>
+        <!--<input type="button" value="去登陆"class="colMint"/>-->
+        <a href="javascript:;" class="colMint">去登陆</a>
+    </form>
+    {%endif%}
+    <script src="/public/js/jquery-1.11.3.js"></script>
+    <script src="/public/js/index.js"></script>
+</body>
+</html>

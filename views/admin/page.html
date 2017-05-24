@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<nav>
+    <ul class="pager">
+        <li class="previous"><a href="/admin/{{rou}}?page={{page-1}}"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+        <li>
+            一共有 {{count}} 条数据，每页显示 {{limit}} 条数据，共 {{pages}} 页，当前页为 {{page}} 。
+        </li>
+        <li class="next"><a href="/admin/{{rou}}?page={{page+1}}">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+    </ul>
+</nav>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{%extends 'layout.html'%}
+{%block content%}
+    <div class="jumbotron">
+        <h3>{{content.title}}</h3>
+        <hr/>
+        <p style="font-size: 10px">
+            <span style="background:#393939; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-user"></span><span>{{content.user.username}}</span></span>&nbsp;
+            <span style="background:#FFC219; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-time"> </span><span>{{content.addTime|date('Y-m-d H:i:s',-8*60)}}</span></span>&nbsp;
+            <span style="background:#E32551; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-eye-open"> </span><span>({{content.views}})</span></span>&nbsp;
+            <span style="background:#73C8A9; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-comment"> </span><span>({{content.comments.length}})</span></span>
+        </p>
+        <input type="hidden" id="data" value="{{content.content}}"/>
+        <p id="content" style="font-size: 18px"></p>
+    </div>
+<script>
+    var data=document.getElementById('data').value;
+    document.getElementById('content').innerHTML=data;
+</script>
+<!--评论-->
+    <div class="jumbotron">
+        {%if userInfo._id%}
+        <div class="row">
+            <div class="col-xs-6">评论</div>
+            <div class="col-xs-6" style="text-align: right">共有 <span class="messageCount"></span> 条评论</div>
+        </div>
+        <br/>
+        <div>{{userInfo.username}}</div>
+        <textarea rows="3" class="form-control" placeholder="请输入评论" id="messageContent"></textarea><br/>
+        <input type="hidden" id="contentId" value="{{content.id}}"/>
+        <p><button class="btn btn-primary btn-sm" role="button" id="messageBtn">提交</button></p>
+        <div class="panel panel-default messageList"></div>
+        <nav>
+            <ul class="pager">
+                <li class="previous"><a href="javascript:;"><span aria-hidden="true">&larr;</span>上一页</a></li>
+                <li class="pageList"></li>
+                <li class="next"><a href="javascript:;">下一页<span aria-hidden="true">&rarr;</span></a></li>
+            </ul>
+        </nav>
+        {%else%}
+        <div class="alert alert-warning" role="alert" style="text-align: center">你还没有登录请先登陆</div>
+        {%endif%}
+
+
+    </div>
+{%endblock%}

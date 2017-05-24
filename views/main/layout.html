@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>博客首页</title>
+    <link rel="stylesheet" href="/public/css/main.css"/>
+    <!-- Bootstrap -->
+    <link href="/public/css/bootstrap.css" rel="stylesheet">
+    <link href="/public/js/highlight/styles/idea.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="/public/js/html5shiv.min.js"></script>
+    <script src="/public/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">我的博客</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">如果联系我@1129137164.qq.com<span class="sr-only">(current)</span></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索文章</button>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Link</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="row">
+        <div class="col-xs-12">
+            <img src="/public/img/banner1.png" style="width:100%"/>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+            {%if userInfo._id%}
+            <div class="panel panel-default" id="userInfo">
+                <div class="panel-heading">用户信息</div>
+                {%if userInfo.isAdmin%}
+                <div class="panel-body">
+                    <span>你好,管理员！</span>
+                    <a href="/admin">进入管理</a>
+                </div>
+                {%else%}
+                <div class="panel-body">
+                    <div>你好！{{userInfo.username}} 欢迎来到我的博客！</div>
+                </div>
+                {%endif%}
+                <div class="panel-body">
+                    <a href="javascript:;" id="logout">退出</a>
+                </div>
+            </div>
+            {%else%}
+            <form class="form-horizontal" id="loginBox">
+                <div class="form-group">
+                    <label for="username" class="col-xs-1 col-sm-2 control-label"><span class="glyphicon glyphicon-user"></span></label>
+                    <div class="col-xs-11 col-sm-10">
+                        <input type="email" name="username" class="form-control" id="username" placeholder="username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-xs-1 col-sm-2 control-label"><span class="glyphicon glyphicon-lock"></span></label>
+                    <div class="col-xs-11 col-sm-10">
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type="button" value="登陆" class="btn btn-default" />
+                        <a href="javascript:;" class="btn btn-default colMint ">去注册</a>
+                        <br/>
+                        <div class="alert colWarning" role="alert" style="text-align: center"></div>
+                    </div>
+                </div>
+            </form>
+            <form class="form-horizontal" id="registerBox" style="display: none">
+                <div class="form-group">
+                    <label for="username-1" class="col-xs-1 col-sm-2 control-label"><span class="glyphicon glyphicon-user"></label>
+                    <div class="col-xs-11 col-sm-10">
+                        <input type="email" name="username" class="form-control" id="username-1" placeholder="username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password-1" class="col-xs-1 col-sm-2 control-label"><span class="glyphicon glyphicon-lock"></label>
+                    <div class="col-xs-11 col-sm-10">
+                        <input type="password" name="password" class="form-control" id="password-1" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="repassword" class="col-xs-1 col-sm-2 control-label"><span class="glyphicon glyphicon-ok"></span></label>
+                    <div class="col-xs-11 col-sm-10">
+                        <input type="password" name="repassword" class="form-control" id="repassword" placeholder="repassword">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <input type="button" value="注册" class="btn btn-default" />
+                        <a href="javascript:;" class="btn btn-default colMint ">去登录</a>
+                        <br/>
+                        <div class="alert colWarning" role="alert" style="text-align: center"></div>
+                    </div>
+                </div>
+            </form>
+            {%endif%}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="list-group">
+                        {%if category==''%}
+                        <a href="/" class="list-group-item active">
+                            全部文章分类
+                        </a>
+                        {%else%}
+                        <a href="/" class="list-group-item">
+                            全部文章分类
+                        </a>
+                        {%endif%}
+                        {%for cate in categories%}
+                        {%if category==cate.id%}
+                        <a href="/?category={{cate.id}}" class="list-group-item active">{{cate.name}}</a>
+                        {%else%}
+                        <a href="/?category={{cate.id}}" class="list-group-item">{{cate.name}}</a>
+                        {%endif%}
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-9">
+            {%block content%}{%endblock%}
+        </div>
+    </div>
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/public/js/jquery-1.11.3.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/public/js/index.js"></script>
+<script src="/public/js/comment.js"></script>
+<script src="/public/js/bootstrap.js"></script>
+<!--高亮显示-->
+<script src="/public/js/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+</body>
+</html>
