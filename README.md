@@ -1,6 +1,7 @@
 # myblog
 采用nodejs+express+mongodb+mongoose,搭建一个个人博客系统，在项目中我们实现了用户注册、登录、博客文章列表、内容预览和评论功能，后台的：注册用户管理、博客分类管理、博客内容以及评论的管理功能。
 
+## [测试连接](https://totrip.xin:8081) totrip.xin:8081
 
 ## 部署方法
 
