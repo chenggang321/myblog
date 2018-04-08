@@ -115,14 +115,13 @@ router.post('/user/login',function(req,res,next){
             _id:userInfo._id,
             username:userInfo.username
         }
-        //console.log(userInfo);
-        //var data = JSON.stringify({_id:userInfo._id,username:userInfo.username});
-        //console.log(data);
-
-        req.cookies.set('userInfo',JSON.stringify({
-            _id:userInfo._id,
-            username:userInfo.username
-        }));
+		var userInfoBase64= new Buffer(
+                JSON.stringify({
+                     _id:userInfo.id,
+                    username:userInfo.username
+                })
+            ).toString('base64')
+        req.cookies.set('userInfo',userInfoBase64);
         res.json(responseData);
         return;
     });
@@ -170,19 +169,21 @@ router.post('/comment/post',function(req,res){
         res.json(responseData);
     });
 });
-/*
- *js Unicode编码转换
- */
-var decToHex = function(str) {
-    var res=[];
-    for(var i=0;i < str.length;i++)
-        res[i]=("00"+str.charCodeAt(i).toString(16)).slice(-4);
-    return "\\u"+res.join("\\u");
-}
-var hexToDec = function(str) {
-    str=str.replace(/\\/g,"%");
-    return unescape(str);
-}
-//var str=decToHex("decToHex unicode 编码转换");
-//alert("编码后："+str+"\n\n解码后："+hexToDec(str));
+
+router.post('/search',function(req,res){
+    var keyWord=req.body.keyWord||'';
+    //查询当前这篇内容的信息
+    Content.find({
+        title: {$regex:keyWord,$options:"i"}
+    }).then(function(content){
+        var postData={
+            username:req.userInfo.username,
+            postTime:new Date(),
+            content:content
+        }
+        responseData.data=postData;
+        console.log(postData);
+        res.json(postData);
+    })
+});
 module.exports = router;

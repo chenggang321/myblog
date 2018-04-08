@@ -2,6 +2,38 @@ var prepage=5;
 var page=1;
 var pages=0;
 var comments=[];
+//搜索文章
+$('#searchBtn').on('click',function(){
+    $.ajax({
+        type:'post',
+        url:'/api/search',
+        data:{keyWord:$('#keyWord').val()},
+        success:function(responseData){
+            var html="";
+            if(responseData.content[0]){
+                var content=responseData.content[0];
+                 html=`
+                <div style="padding:20px 10px;background: #D9EDF7;border-radius: 3px; margin-bottom:10px;">
+                    <h4>${content.title}</h4>
+                    <hr/>
+                    <p style="font-size: 10px">
+                        <span style="background:#393939; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-user"></span><span>${responseData.username}</span></span>&nbsp;
+                        <span style="background:#FFC219; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-time"> </span><span>${content.addTime}</span></span>&nbsp;
+                        <span style="background:#E32551; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-eye-open"> </span><span>(${content.views})</span></span>&nbsp;
+                        <span style="background:#73C8A9; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-comment"> </span><span>(${content.comments.length})</span></span>
+                    </p>
+                    <p style="font-size: 15px">${content.description}</p>
+                    <p><a class="btn btn-primary btn-sm" href="/view?contentId=${content._id}" role="button">查看全文</a></p>
+                 </div>
+            `
+            }else{
+                html=`<div class="alert alert-warning text-center" role="alert">没有找到您要搜索的内容</div>`;
+            }
+            console.log(html);
+            $(".testContent").html(html);
+        }
+    });
+});
 //提交评论
 $('#messageBtn').on('click',function(){
     $.ajax({

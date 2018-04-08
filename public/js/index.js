@@ -37,8 +37,7 @@ $(function(){
             }
         });
     });
-    //登录模块
-    $loginBox.find('input:button').on('click',function(){
+    function login(){
         $.ajax({
             type:'post',
             url:'/api/user/login',
@@ -54,6 +53,16 @@ $(function(){
                 }
             }
         });
+    }
+    // 回车登陆
+    $loginBox.find('input:password').keydown(function(e){
+        if(e.keyCode==13){
+            login();
+        }
+    });
+    //登录模块
+    $loginBox.find('input:button').on('click',function(){
+        login();
     });
     //退出
     $('#logout').on('click',function(){

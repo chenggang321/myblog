@@ -1,19 +1,21 @@
 {%extends 'layout.html'%}
 {%block content%}
-    {%for  content in contents%}
-    <div class="jumbotron">
-        <h3>{{content.title}}</h3>
-        <hr/>
-        <p style="font-size: 10px">
-            <span style="background:#393939; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-user"></span><span>{{content.user.username}}</span></span>&nbsp;
-            <span style="background:#FFC219; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-time"> </span><span>{{content.addTime|date('Y-m-d H:i:s',-8*60)}}</span></span>&nbsp;
-            <span style="background:#E32551; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-eye-open"> </span><span>({{content.views}})</span></span>&nbsp;
-            <span style="background:#73C8A9; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-comment"> </span><span>({{content.comments.length}})</span></span>
-        </p>
-        <p style="font-size: 15px">{{content.description}}</p>
-        <p><a class="btn btn-primary btn-sm" href="/view?contentId={{content.id}}" role="button">查看全文</a></p>
+    <div class="testContent">
+        {%for  content in contents%}
+        <div style="padding:20px 10px;background: #D9EDF7;border-radius: 3px; margin-bottom:10px;">
+            <h4>{{content.title}}</h4>
+            <hr/>
+            <p style="font-size: 10px">
+                <span style="background:#393939; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-user"></span><span>{{content.user.username}}</span></span>&nbsp;
+                <span style="background:#FFC219; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-time"> </span><span>{{content.addTime|date('Y-m-d H:i:s',-8*60)}}</span></span>&nbsp;
+                <span style="background:#E32551; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-eye-open"> </span><span>({{content.views}})</span></span>&nbsp;
+                <span style="background:#73C8A9; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-comment"> </span><span>({{content.comments.length}})</span></span>
+            </p>
+            <p style="font-size: 15px">{{content.description}}</p>
+            <p><a class="btn btn-primary btn-sm" href="/view?contentId={{content.id}}" role="button">查看全文</a></p>
+        </div>
+        {%endfor%}
     </div>
-    {%endfor%}
     <nav>
         <ul class="pager">
             {%if page<=1%}

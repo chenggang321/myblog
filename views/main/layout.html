@@ -4,7 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="一个值得收藏的前端博客，里面涵盖了html,css,js,jquery等前端关键技术。">
+    <meta name="keywords" content="博客,个人博客,blog,html,css,js,jquery">
+    <meta name="baidu-site-verification" content="rGGzB3E5An" />
     <title>博客首页</title>
+    <link rel="icon" href="/public/img/favicon.ico"/>
     <link rel="stylesheet" href="/public/css/main.css"/>
     <!-- Bootstrap -->
     <link href="/public/css/bootstrap.css" rel="stylesheet">
@@ -16,8 +20,8 @@
     <![endif]-->
 </head>
 <body>
-<div class="container">
-    <nav class="navbar navbar-default">
+<div class="container-fluid">
+    <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -27,7 +31,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">我的博客</a>
+                <a class="navbar-brand" href="/"><span><img src="/public/img/favicon.png"/>&nbsp;</span>我的博客</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -35,48 +39,50 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">如果联系我@1129137164.qq.com<span class="sr-only">(current)</span></a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">一些展示的作品<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+                            <li><a href="http://totrip.xin/yd/">仿移动官网</a></li>
+                            <li><a href="http://totrip.xin/realia/">realia</a></li>
+                            <li><a href="http://totrip.xin/taobao/">仿淘宝官网</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                            <li><a href="http://totrip.xin/wmsq/">仿常德完美社区</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
+                            <li><a href="http://totrip.xin/xiecheng/">仿携程官网</a></li>
+							<li><a href="http://totrip.xin/tuan800/">仿团800</a></li>
                         </ul>
                     </li>
                 </ul>
                 <form class="navbar-form navbar-left">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control" value="" placeholder="Search" id="keyWord" name="keyword">
                     </div>
-                    <button type="submit" class="btn btn-default">搜索文章</button>
+                    <button type="button" class="btn btn-default" id="searchBtn" >搜索文章</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Link</a></li>
+                    <li><a href="https://github.com/chenggang321">在github上找到我</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的作品<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+                            <li><a href="http://totrip.xin/rfresh">净美仕官网</a></li>
+                            <li><a href="http://totrip.xin/jdAll/">仿京东的首页</a></li>
+                            <li><a href="http://totrip.xin/myboot/">基于bootstrap的因特尔首页</a></li>
+                            <li><a href="http://totrip.xin/kaifanla/kaifanla_ionic/">基于ng+ionc的kafanla</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
+                            <li><a href="http://totrip.xin/tetris/tetris%20%E7%B4%A0%E6%9D%90/tetris.html">javascript俄罗斯方块游戏</a></li>
                         </ul>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
-    <div class="row">
+    <div class="row" style="margin-top: 60px">
         <div class="col-xs-12">
             <img src="/public/img/banner1.png" style="width:100%"/>
         </div>
     </div>
     <hr/>
     <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-3">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
             {%if userInfo._id%}
             <div class="panel panel-default" id="userInfo">
                 <div class="panel-heading">用户信息</div>
@@ -119,13 +125,13 @@
             </form>
             <form class="form-horizontal" id="registerBox" style="display: none">
                 <div class="form-group">
-                    <label for="username-1" class="col-xs-1 col-sm-2 control-label"><span class="glyphicon glyphicon-user"></label>
+                    <label for="username-1" class="col-xs-1 col-sm-2 control-label"><span class="glyphicon glyphicon-user"></span></label>
                     <div class="col-xs-11 col-sm-10">
                         <input type="email" name="username" class="form-control" id="username-1" placeholder="username">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password-1" class="col-xs-1 col-sm-2 control-label"><span class="glyphicon glyphicon-lock"></label>
+                    <label for="password-1" class="col-xs-1 col-sm-2 control-label"><span class="glyphicon glyphicon-lock"></span></label>
                     <div class="col-xs-11 col-sm-10">
                         <input type="password" name="password" class="form-control" id="password-1" placeholder="Password">
                     </div>
@@ -169,7 +175,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-9">
+        <div class="col-xs-12 col-sm-6 col-md-9 col-lg-9">
             {%block content%}{%endblock%}
         </div>
     </div>

@@ -42,7 +42,10 @@ app.use(function(req,res,next){
     req.userInfo={};
     if(req.cookies.get('userInfo')){
         try{
-            req.userInfo=JSON.parse(req.cookies.get('userInfo'))
+			var userInfoString=new Buffer(req.cookies.get('userInfo'), 'base64').toString();//str是base64编码的字符串
+            req.userInfo=JSON.parse(userInfoString);
+			
+			
 
             //获取当前登录用户的类型，是否是管理员
             User.findById(req.userInfo._id).then(function(userInfo){

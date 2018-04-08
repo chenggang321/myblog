@@ -340,7 +340,6 @@ router.get('/content/add',function(req,res){
 * 内容的保存
 * */
 router.post('/content/add',function(req,res){
-    console.log(req.body);
     if(req.body.category==''){
         res.render('admin/error',{
             userInfo:req.userInfo,
@@ -361,7 +360,7 @@ router.post('/content/add',function(req,res){
         title:req.body.title,
         user:req.userInfo._id.toString(),
         description:req.body.description,
-        content:req.body.textParse
+        content:req.body.content
     }).save().then(function(rs){
             res.render('admin/success',{
                 userInfo:req.userInfo,
@@ -375,6 +374,7 @@ router.post('/content/add',function(req,res){
 * 修改内容
 * */
 router.get('/content/edit',function(req,res){
+    console.log(req.body);
     var id=req.query.id||'';
     var categories=[];
     Category.find().sort({_id:1}).then(function(rs){
@@ -402,6 +402,7 @@ router.get('/content/edit',function(req,res){
 * 内容修改的保存
 * */
 router.post('/content/edit',function(req,res){
+    console.log(res);
     var id=req.query.id||'';
     if(req.body.category==''){
         res.render('admin/error',{

@@ -1,20 +1,22 @@
 {%extends 'layout.html'%}
 {%block content%}
-    <div class="jumbotron">
-        <h3>{{content.title}}</h3>
+    <div style="padding:30px 10px;background: #D9EDF7;border-radius: 3px">
+        <h4>{{content.title}}</h4>
         <hr/>
         <p style="font-size: 10px">
-            <span style="background:#393939; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-user"></span><span>{{content.user.username}}</span></span>&nbsp;
+            <span style="background:#393939; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-user"></span><span>{{userInfo.username}}</span></span>&nbsp;
             <span style="background:#FFC219; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-time"> </span><span>{{content.addTime|date('Y-m-d H:i:s',-8*60)}}</span></span>&nbsp;
             <span style="background:#E32551; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-eye-open"> </span><span>({{content.views}})</span></span>&nbsp;
             <span style="background:#73C8A9; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-comment"> </span><span>({{content.comments.length}})</span></span>
         </p>
         <input type="hidden" id="data" value="{{content.content}}"/>
-        <p id="content" style="font-size: 18px"></p>
+        <p id="content" style="font-size: 15px"></p>
     </div>
+<!--marke编译-->
+<script src="/public/js/marked.js"></script>
 <script>
     var data=document.getElementById('data').value;
-    document.getElementById('content').innerHTML=data;
+    document.getElementById('content').innerHTML=marked(data);
 </script>
 <!--评论-->
     <div class="jumbotron">
