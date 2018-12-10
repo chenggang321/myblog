@@ -1,40 +1,45 @@
 {%extends 'layout.html'%}
 {%block content%}
-    <div class="testContent">
+	{%if contents.length !== 0%}
+    <div class="testContent" id="ContentBox" style="margin-top:20px;">
         {%for  content in contents%}
-        <div style="padding:20px 10px;background: #D9EDF7;border-radius: 3px; margin-bottom:10px;">
+        <div class="blog-card">
             <h4>{{content.title}}</h4>
-            <hr/>
+            <hr style="color:#fff;margin:10px;"/>
             <p style="font-size: 10px">
-                <span style="background:#393939; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-user"></span><span>{{content.user.username}}</span></span>&nbsp;
-                <span style="background:#FFC219; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-time"> </span><span>{{content.addTime|date('Y-m-d H:i:s',-8*60)}}</span></span>&nbsp;
-                <span style="background:#E32551; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-eye-open"> </span><span>({{content.views}})</span></span>&nbsp;
-                <span style="background:#73C8A9; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-comment"> </span><span>({{content.comments.length}})</span></span>
+                <span class="blog-tag blog-tag--info"><span class="glyphicon glyphicon-user blog-icon"></span><span>{{content.user.username}}</span></span>&nbsp;
+                <span class="blog-tag blog-tag--success"><span class="glyphicon glyphicon-time blog-icon"></span><span>{{content.addTime|date('Y-m-d H:i:s',-8*60)}}</span></span>&nbsp;
+                <span class="blog-tag blog-tag--warning"><span class="glyphicon glyphicon-eye-open blog-icon"></span><span>({{content.views}})</span></span>&nbsp;
+                <span class="blog-tag blog-tag--danger"><span class="glyphicon glyphicon-comment blog-icon"></span><span>({{content.comments.length}})</span></span>
             </p>
             <p style="font-size: 15px">{{content.description}}</p>
-            <p><a class="btn btn-primary btn-sm" href="/view?contentId={{content.id}}" role="button">查看全文</a></p>
+            <p><a class="btn-sm blog-button" href="/view?contentId={{content.id}}" role="button">查看全文 >>></a></p>
         </div>
         {%endfor%}
     </div>
-    <nav>
-        <ul class="pager">
-            {%if page<=1%}
-            <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span>没有上一页了</a></li>
-            {%else%}
-            <li class="previous"><a href="/?category={{category}}&page={{page-1}}"><span aria-hidden="true">&larr;</span> 上一页</a></li>
-            {%endif%}
-
-            {%if pages>0%}
-            <li>
-                {{page}}/{{pages}}
-            </li>
-            {%endif%}
-
-            {%if page>= pages%}
-            <li class="next"><a href="#">已经是最后一页了 <span aria-hidden="true">&rarr;</span></a></li>
-            {%else%}
-            <li class="next"><a href="/?category={{category}}&page={{page+1}}">下一页 <span aria-hidden="true">&rarr;</span></a></li>
-            {%endif%}
-        </ul>
-    </nav>
+	{%else%}
+        <div class="alert alert-warning" role="alert" style="text-align: center;margin-top:20px;">暂无文章</div>
+    {%endif%}
+	<script src="/public/js/util.js"></script>
+	<script>
+		var page = 1
+		window.onscroll=debounce(function(){
+		// 距离底部200px时加载一次
+		var ContentBox = document.getElementById("ContentBox")
+		if(isReachBottom()){
+			page++
+		  jsGetAjaxPromise(`http://totrip.xin:8081/?category={{category}}&page=${page}`)
+		  .then(function(res){
+			var tpl = getTemplate(JSON.parse(res).contents);
+			var pages = JSON.parse(res).pages
+			if(page>pages) {
+				window.onscroll = null
+				var nodes = parseToDOM('<div style="text-align:center;"><span>没有文章了！<span></div>')
+				return renderDom(nodes)
+			}
+			renderDom(parseToDOM(tpl))
+		  })
+		}
+		},200)
+	</script>
 {%endblock%}

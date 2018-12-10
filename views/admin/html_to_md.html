@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{%block main%}
+<ol class="breadcrumb">
+    <li><a href="/">首页</a></li>
+    <li><span>工具</span></li>
+</ol>
+<h3>html转md</h3>
+<form id="main_form">
+    <div class="form-group">
+        <label for="editor">md：</label>
+        <!--<div class="editor-wrapper">-->
+            <textarea name="content" id="editor" class="form-control" rows="10" placeholder="请输入内容"></textarea>
+        <!--</div>-->
+    </div>
+	<div class="form-group">
+        <label for="code">html：</label>
+        <!--<div class="editor-wrapper">-->
+            <textarea id="code" class="form-control" rows="10" placeholder="请输入html"></textarea>
+        <!--</div>-->
+    </div>
+    <button type="submit" class="btn btn-default">转换</button>
+</form>
+<script type="text/javascript" src="/public/editor/zepto.js"></script>
+<script src="/public/js/reMarked.js"></script>
+<script type="text/javascript" src="/public/js/htmlToMd.js"></script>
+{%endblock%}

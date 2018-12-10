@@ -2,3 +2,130 @@ body{
     background: gray;
     font-size: 14px;
 }
+
+.blog-icon{
+	margin-right:3px;
+}
+.blog-card pre {
+	padding: 0;
+	border: 1px solid #fff;
+}
+.blog-card pre code{
+	white-space: unset;
+}
+.blog-card table {
+    width: 100%;
+}
+.blog-card table th, 
+.blog-card table td {
+    border: 1px solid #E6E6E6;
+    padding: 5px 8px;
+    word-break: normal;
+}
+.blog-card table th {
+    background: #F3F3F3;
+}
+.blog-card {
+	font-size:14px;
+	text-align:justify;
+}
+.blog-card  h1{
+	font-size:20px;
+}
+.blog-card  h2{
+	font-size:18px;
+}
+.blog-card  h3{
+	font-size:16px;
+}
+.blog-card  h4,
+.blog-card  h5,
+.blog-card  h6{
+	font-size:14px;
+}
+.blog-card  li{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+.blog-card p,.blog-card  li{
+	font-size:14px;
+}
+.blog-card{
+	border-radius: 4px;
+	border: 1px solid #ebeef5;
+	background-color: #fff;
+	overflow: hidden;
+	color: #303133;
+	transition: .3s;
+	box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+	margin:10px 0;
+	padding:10px 20px;
+}
+.blog-button{
+	border-color: transparent;
+    color: #c0c4cc;
+    background: transparent;
+    padding-left: 0;
+    padding-right: 0;
+}
+.blog-tag{
+	display: inline-block;
+	height:20px;
+	line-height:20px;
+	padding: 1px 3px;
+	font-size: 12px;
+	color: #409eff;
+	border-radius: 2px;
+	box-sizing: border-box;
+	white-space: nowrap;
+}
+.blog-tag--success {
+	color: #67c23a;
+}
+.blog-tag--info {
+	color: #909399;
+}
+.blog-tag--warning {
+	color: #e6a23c;
+}
+.blog-tag--danger {
+	color: #f56c6c;
+}
+
+#categoryBox .list-group-item.active{
+    background-color: #fff;
+    color: #409eff;
+	border-color:#ddd;
+}
+#loginAndRegisterBox{
+	display:none;
+}
+@media screen and (max-device-width: 750px) { 
+	#categoryBox,#bannerBox{
+		display:none;
+	}
+	#loginAndRegisterBox{
+		margin-top:60px;
+	}
+	.blog-card{
+		padding: 10px 8px;
+		overflow:auto;
+	}
+	div.blog-main{
+		padding:0 8px;
+	}
+	p blockquote{
+		padding: 8px;
+	}
+	#ContentBox{
+		margin-top:0!important;
+	}
+	.blog-card table td ,
+	.blog-card table th{
+		padding: 2px 4px;;
+	}
+	.blog-card table {
+		min-width:800px;
+	}
+}

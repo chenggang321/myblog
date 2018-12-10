@@ -13,17 +13,17 @@ $('#searchBtn').on('click',function(){
             if(responseData.content[0]){
                 var content=responseData.content[0];
                  html=`
-                <div style="padding:20px 10px;background: #D9EDF7;border-radius: 3px; margin-bottom:10px;">
+                <div class="blog-card">
                     <h4>${content.title}</h4>
-                    <hr/>
+                    <hr style="color:#fff;margin:10px;"/>
                     <p style="font-size: 10px">
-                        <span style="background:#393939; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-user"></span><span>${responseData.username}</span></span>&nbsp;
-                        <span style="background:#FFC219; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-time"> </span><span>${content.addTime}</span></span>&nbsp;
-                        <span style="background:#E32551; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-eye-open"> </span><span>(${content.views})</span></span>&nbsp;
-                        <span style="background:#73C8A9; color:white;border-radius: 3px; padding: 3px 4px"><span class="glyphicon glyphicon-comment"> </span><span>(${content.comments.length})</span></span>
+                        <span class="blog-tag blog-tag--info"><span class="glyphicon glyphicon-user"></span><span>${responseData.username}</span></span>&nbsp;
+                        <span class="blog-tag blog-tag--success"><span class="glyphicon glyphicon-time"> </span><span>${content.addTime}</span></span>&nbsp;
+                        <span class="blog-tag blog-tag--warning"><span class="glyphicon glyphicon-eye-open"> </span><span>(${content.views})</span></span>&nbsp;
+                        <span class="blog-tag blog-tag--danger"><span class="glyphicon glyphicon-comment"> </span><span>(${content.comments.length})</span></span>
                     </p>
                     <p style="font-size: 15px">${content.description}</p>
-                    <p><a class="btn btn-primary btn-sm" href="/view?contentId=${content._id}" role="button">查看全文</a></p>
+                    <p><a class="btn-sm blog-button" href="/view?contentId=${content._id}" role="button">查看全文</a></p>
                  </div>
             `
             }else{
@@ -159,4 +159,15 @@ function formatDate(d){
     Minutes>=10 ? (CurrentDate += Minutes +"："):(CurrentDate += "0"+Minutes +"：");
     Seconds>=10 ? (CurrentDate += Seconds):(CurrentDate += "0"+Seconds);
     return CurrentDate;
+}
+
+function showLogon(ele){
+	var loginAndRegisterBox = document.getElementById("loginAndRegisterBox");
+	if(loginAndRegisterBox.style.display === "block"){
+		loginAndRegisterBox.style.display = "none";
+		ele.innerHTML = "登陆"
+	}else{
+		loginAndRegisterBox.style.display = "block";
+		ele.innerHTML = "隐藏登陆"
+	}
 }
