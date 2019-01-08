@@ -34,3 +34,15 @@ node app.js
 - 本地访问页面：http://localhost:8081/
 - 服务器访问页面：http://服务器ip:8081/
 
+6.前后端分离
+
+nodejs+express+mongodb+mongoose
+
+[后台连接](https://github.com/chenggang321/node-blog-server) https://github.com/chenggang321/node-blog-server
+
+vue+axios+vuex+bootstrap
+
+[前台连接](https://github.com/chenggang321/blog-vue) https://github.com/chenggang321/blog-vue
+
+
+
