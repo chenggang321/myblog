@@ -44,5 +44,5 @@ vue+axios+vuex+bootstrap
 
 [前台连接](https://github.com/chenggang321/blog-vue) https://github.com/chenggang321/blog-vue
 
-
+[查看地址](http://totrip.xin)
 
