@@ -13,3 +13,8 @@ package-lock.json*
 *.ntvs*
 *.njsproj
 *.sln
+
+#pm2
+current/
+shared/
+source/
