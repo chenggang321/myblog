@@ -28,7 +28,7 @@
 		var ContentBox = document.getElementById("ContentBox")
 		if(isReachBottom()){
 			page++
-		  jsGetAjaxPromise(`http://totrip.xin:8081/?category={{category}}&page=${page}`)
+		  jsGetAjaxPromise(`http://localhost:8081/?category={{category}}&page=${page}`)
 		  .then(function(res){
 			var tpl = getTemplate(JSON.parse(res).contents);
 			var pages = JSON.parse(res).pages
