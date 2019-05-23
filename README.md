@@ -44,5 +44,10 @@ vue+axios+vuex+bootstrap
 
 [前台连接](https://github.com/chenggang321/blog-vue) https://github.com/chenggang321/blog-vue
 
+```
+pm2 deploy ecosystem.config.js production setup
 
+pm2 deploy ecosystem.config.js production
+
+```
 
