@@ -22,7 +22,7 @@ router.get('/',function(req,res,next){
     data.page=req.query.page||0;
     data.contents=[];
     data.pages=0;
-    data.limit=3;
+    data.limit=5;
     data.count=0;
 
     var where={};
@@ -39,11 +39,14 @@ router.get('/',function(req,res,next){
         //取值不能小于1
         data.page=Math.max(data.page,1);
         var skip=(data.page-1)*data.limit;
-        return Content.where(where).find().sort({_id:-1}).limit(data.limit).skip(skip).populate(['category','user']).sort({
+        return  Content.where(where).find().sort({_id:-1}).limit(data.limit).skip(skip).populate(['category','user']).sort({
             addTime:-1
         });
     }).then(function(contents){
         data.contents=contents;
+        if(data.page>1){
+            return res.json(data)
+        }
         res.render('main/index_1',data);
     });
 });
