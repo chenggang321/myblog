@@ -69,7 +69,7 @@ app.use('/api',require('./routers/api'));
 app.use('/',require('./routers/main'));
 
 //连接数据库
-mongoose.connect('mongodb://47.94.208.33:27017/test',function(err){
+mongoose.connect('mongodb://localhost:27017/test',function(err){
     if(err){
         console.log("数据库连接失败");
     }else{
