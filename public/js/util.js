@@ -66,18 +66,20 @@ var getTemplate = function(contents){
 	var template = ``;
 	for(content of contents){
 		template += `
-			<div class="blog-card">
-				<h4>${content.title}</h4>
-				<hr/>
-				<p style="font-size: 10px">
-					<span class="blog-tag blog-tag--info"><span class="glyphicon glyphicon-user blog-icon"></span><span>${content.user?content.user.username:''}</span></span>&nbsp;
-					<span class="blog-tag blog-tag--success"><span class="glyphicon glyphicon-time blog-icon"> </span><span>${formateDate(content.addTime,-8*60)}</span></span>&nbsp;
-					<span class="blog-tag blog-tag--warning"><span class="glyphicon glyphicon-eye-open blog-icon"> </span><span>(${content.views})</span></span>&nbsp;
-					<span class="blog-tag blog-tag--danger"><span class="glyphicon glyphicon-comment blog-icon"> </span><span>(${content.comments?content.comments.length:0})</span></span>
-				</p>
-				<p style="font-size: 15px">${content.description}</p>
-				<p><a class="btn-sm blog-button" href="/view?contentId=${content._id}" role="button">查看全文 >>></a></p>
-			</div>
+			<a href="/view?contentId=${content._id}">
+				<div class="blog-card">
+					<h4>${content.title}</h4>
+					<hr/>
+					<p style="font-size: 10px">
+						<span class="blog-tag blog-tag--info"><span class="glyphicon glyphicon-user blog-icon"></span><span>${content.user?content.user.username:''}</span></span>&nbsp;
+						<span class="blog-tag blog-tag--success"><span class="glyphicon glyphicon-time blog-icon"> </span><span>${formateDate(content.addTime,-8*60)}</span></span>&nbsp;
+						<span class="blog-tag blog-tag--warning"><span class="glyphicon glyphicon-eye-open blog-icon"> </span><span>(${content.views})</span></span>&nbsp;
+						<span class="blog-tag blog-tag--danger"><span class="glyphicon glyphicon-comment blog-icon"> </span><span>(${content.comments?content.comments.length:0})</span></span>
+					</p>
+					<p style="font-size: 15px">${content.description}</p>
+				</div>
+			</a>
+			
 		`
 	}
 	return template;

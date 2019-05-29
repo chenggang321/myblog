@@ -2,6 +2,9 @@ body{
     background: gray;
     font-size: 14px;
 }
+a{
+    text-decoration: none;
+}
 
 .blog-icon{
 	margin-right:3px;
