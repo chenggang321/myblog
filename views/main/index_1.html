@@ -3,7 +3,7 @@
 	{%if contents.length !== 0%}
     <div class="testContent" id="ContentBox" style="margin-top:20px;">
         {%for  content in contents%}
-        <a href="/view?contentId={{content.id}}">
+        <a href="/view?contentId={{content.id}}" class="aniview" av-animation="fadeInRight">
             <div class="blog-card">
                 <h4>{{content.title}}</h4>
                 <hr style="color:#fff;margin:10px;"/>

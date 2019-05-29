@@ -12,6 +12,7 @@
     <!-- Bootstrap -->
     <link href="/public/css/bootstrap.css" rel="stylesheet">
     <link href="/public/js/highlight/styles/tomorrow.css" rel="stylesheet">
+    <link rel="stylesheet" href="/public/css/animate.css">
     <!--[if lt IE 9]>
     <script src="/public/js/html5shiv.min.js"></script>
     <script src="/public/js/respond.min.js"></script>
@@ -188,9 +189,18 @@
 <!--高亮显示-->
 <script src="/public/js/highlight/highlight.pack.js"></script>
 <!-- <script src="/public/js/vconsole.min.js"></script> -->
+<script src="/public/js/jquery.aniview.min.js"></script>
 <script>
 	hljs.initHighlightingOnLoad();
 	 // var vConsole = new VConsole();
+    // 动画
+    $(document).ready(function () {
+        var options = {
+            animateThreshold: 100,
+            scrollPollInterval: 50,
+        };
+        $('.aniview').AniView(options);
+    });
 </script>
 </body>
 </html>
