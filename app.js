@@ -44,9 +44,6 @@ app.use(function(req,res,next){
         try{
 			var userInfoString=new Buffer(req.cookies.get('userInfo'), 'base64').toString();//str是base64编码的字符串
             req.userInfo=JSON.parse(userInfoString);
-			
-			
-
             //获取当前登录用户的类型，是否是管理员
             User.findById(req.userInfo._id).then(function(userInfo){
                 req.userInfo.isAdmin=Boolean(userInfo.isAdmin);
@@ -75,6 +72,6 @@ mongoose.connect('mongodb://server.totrip.xin:27017/blog',function(err){
     }else{
         console.log("数据库连接成功");
         //监听http请求
-        app.listen(8081);
+        app.listen(80);
     }
 });
