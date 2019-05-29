@@ -13,23 +13,24 @@ $('#searchBtn').on('click',function(){
             if(responseData.content[0]){
                 var content=responseData.content[0];
                  html=`
-                <div class="blog-card">
-                    <h4>${content.title}</h4>
-                    <hr style="color:#fff;margin:10px;"/>
-                    <p style="font-size: 10px">
-                        <span class="blog-tag blog-tag--info"><span class="glyphicon glyphicon-user"></span><span>${responseData.username}</span></span>&nbsp;
-                        <span class="blog-tag blog-tag--success"><span class="glyphicon glyphicon-time"> </span><span>${content.addTime}</span></span>&nbsp;
-                        <span class="blog-tag blog-tag--warning"><span class="glyphicon glyphicon-eye-open"> </span><span>(${content.views})</span></span>&nbsp;
-                        <span class="blog-tag blog-tag--danger"><span class="glyphicon glyphicon-comment"> </span><span>(${content.comments.length})</span></span>
-                    </p>
-                    <p style="font-size: 15px">${content.description}</p>
-                    <p><a class="btn-sm blog-button" href="/view?contentId=${content._id}" role="button">查看全文</a></p>
-                 </div>
+                <a href="/view?contentId=${content._id}">
+                    <div class="blog-card">
+                        <h4>${content.title}</h4>
+                        <hr style="color:#fff;margin:10px;"/>
+                        <p style="font-size: 10px">
+                            <span class="blog-tag blog-tag--info"><span class="glyphicon glyphicon-user"></span><span>${responseData.username}</span></span>&nbsp;
+                            <span class="blog-tag blog-tag--success"><span class="glyphicon glyphicon-time"> </span><span>${content.addTime}</span></span>&nbsp;
+                            <span class="blog-tag blog-tag--warning"><span class="glyphicon glyphicon-eye-open"> </span><span>(${content.views})</span></span>&nbsp;
+                            <span class="blog-tag blog-tag--danger"><span class="glyphicon glyphicon-comment"> </span><span>(${content.comments.length})</span></span>
+                        </p>
+                        <p style="font-size: 15px">${content.description}</p>
+                     </div>
+                </a>
+                
             `
             }else{
                 html=`<div class="alert alert-warning text-center" role="alert">没有找到您要搜索的内容</div>`;
             }
-            console.log(html);
             $(".testContent").html(html);
         }
     });

@@ -100,9 +100,9 @@ a:hover, a:focus {
     color: #409eff;
 	border-color:#ddd;
 }
-#loginAndRegisterBox{
+/*#loginAndRegisterBox{
 	display:none;
-}
+}*/
 @media screen and (max-device-width: 750px) { 
 	#categoryBox,#bannerBox{
 		display:none;
