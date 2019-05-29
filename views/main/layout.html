@@ -48,14 +48,14 @@
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="https://github.com/chenggang321"><span></span>github</a></li>
-                    <li class="dropdown">
+                    <!--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">works<span class="caret"></span></a>
                         <ul class="dropdown-menu">
 							<li><a href="javascript:;" style="background:#ddd;">移动端</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="http://totrip.xin:9000">cell</a></li>
 							<li><a href="http://totrip.xin:3000">music</a></li>
-                            <!-- <li><a href="http://totrip.xin/美丽Q用户版">美丽Q</a></li> -->
+                            &lt;!&ndash; <li><a href="http://totrip.xin/美丽Q用户版">美丽Q</a></li> &ndash;&gt;
                             <li role="separator" class="divider"></li>
 							<li><a href="javascript:;" style="background:#ddd;">pc端</a></li>
 							<li role="separator" class="divider"></li>
@@ -65,7 +65,7 @@
                             <li role="separator" class="divider"></li> 
 							<li><a href="http://totrip.xin/tetris/tetris%20%E7%B4%A0%E6%9D%90/tetris.html">javascript俄罗斯方块游戏</a></li>
                         </ul>
-                    </li>
+                    </li>-->
 					<!--<li><a href="javascript:;" onclick="showLogon(this)">登陆与注册</a></li>-->
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -100,19 +100,23 @@
 				{%else%}
 				<form class="form-horizontal" id="loginBox">
 					<div class="form-group">
-						<label for="username" class="col-xs-1 col-sm-2 control-label"><span class="glyphicon glyphicon-user"></span></label>
-						<div class="col-xs-11 col-sm-10">
-							<input type="email" name="username" class="form-control" id="username" placeholder="username">
+						<div class="col-xs-12 col-sm-12">
+                            <label for="username">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <input style="display:inline-block;width: 80%;margin-left: 10px;"  type="email" name="username" class="form-control" id="username" placeholder="username">
+                            </label>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="password" class="col-xs-1 col-sm-2 control-label"><span class="glyphicon glyphicon-lock"></span></label>
-						<div class="col-xs-11 col-sm-10">
-							<input type="password" name="password" class="form-control" id="password" placeholder="Password">
+						<div class="col-xs-12 col-sm-12">
+                            <label for="password">
+                                <span class="glyphicon glyphicon-lock"></span>
+                                <input style="display:inline-block;width: 80%;margin-left: 10px;" type="password" name="password" class="form-control" id="password" placeholder="Password">
+                            </label>
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
+						<div class="col-sm-offset-1 col-sm-10">
 							<input type="button" value="登陆" class="btn btn-default" />
 							<a href="javascript:;" class="btn btn-default colMint ">去注册</a>
 							<br/>
@@ -122,25 +126,33 @@
 				</form>
 				<form class="form-horizontal" id="registerBox" style="display: none">
 					<div class="form-group">
-						<label for="username-1" class="col-xs-1 col-sm-2 control-label"><span class="glyphicon glyphicon-user"></span></label>
-						<div class="col-xs-11 col-sm-10">
-							<input type="email" name="username" class="form-control" id="username-1" placeholder="username">
+						<div class="col-xs-12 col-sm-12">
+                            <label for="username-1">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <input style="display:inline-block;width: 80%;margin-left: 10px;" type="email" name="username" class="form-control" id="username-1" placeholder="username">
+
+                            </label>
+                        </div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-12 col-sm-12">
+                            <label for="password-1">
+                                <span class="glyphicon glyphicon-lock"></span>
+                                <input style="display:inline-block;width: 80%;margin-left: 10px;" type="password" name="password" class="form-control" id="password-1" placeholder="Password">
+
+                            </label>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="password-1" class="col-xs-1 col-sm-2 control-label"><span class="glyphicon glyphicon-lock"></span></label>
-						<div class="col-xs-11 col-sm-10">
-							<input type="password" name="password" class="form-control" id="password-1" placeholder="Password">
+                        <div class="col-xs-12 col-sm-12">
+                            <label for="repassword">
+                                <span class="glyphicon glyphicon-ok"></span>
+                                <input style="display:inline-block;width: 80%;margin-left: 10px;" type="password" name="repassword" class="form-control" id="repassword" placeholder="repassword">
+                            </label>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="repassword" class="col-xs-1 col-sm-2 control-label"><span class="glyphicon glyphicon-ok"></span></label>
-						<div class="col-xs-11 col-sm-10">
-							<input type="password" name="repassword" class="form-control" id="repassword" placeholder="repassword">
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
+						<div class="col-sm-offset-1 col-sm-10">
 							<input type="button" value="注册" class="btn btn-default" />
 							<a href="javascript:;" class="btn btn-default colMint ">去登录</a>
 							<br/>
