@@ -449,4 +449,8 @@ router.get('/content/delete',function(req,res){
         });
     });
 });
+
+router.get('/htmlToMd',function(req,res){
+    res.render('admin/html_to_md',{});
+});
 module.exports = router;
