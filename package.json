@@ -4,13 +4,16 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start":"node app",
+    "dev":"nodemon app",
     "deploy": "pm2 deploy ecosystem.config.js production"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "cookies": "^0.6.2",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "nodemon": "^1.19.1"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
