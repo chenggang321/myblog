@@ -1,7 +1,7 @@
 {%extends 'layout.html'%}
 {%block content%}
 	{%if contents.length !== 0%}
-    <div class="testContent" id="ContentBox" style="margin-top:20px;">
+    <div class="Content" id="ContentBox" style="margin-top:20px;">
         {%for  content in contents%}
         <a href="/view?contentId={{content.id}}">
             <div class="blog-card">

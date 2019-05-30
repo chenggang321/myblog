@@ -31,7 +31,7 @@ $('#searchBtn').on('click',function(){
             }else{
                 html=`<div class="alert alert-warning text-center" role="alert">没有找到您要搜索的内容</div>`;
             }
-            $(".testContent").html(html);
+            $(".Content").html(html);
         }
     });
 });
