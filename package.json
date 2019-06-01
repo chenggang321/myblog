@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start":"node app",
-    "dev":"nodemon app",
+    "start": "node app",
+    "dev": "nodemon app",
     "deploy": "pm2 deploy ecosystem.config.js production"
   },
   "author": "",
