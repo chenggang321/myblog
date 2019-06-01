@@ -22,7 +22,7 @@ router.get('/',function(req,res,next){
     data.page=req.query.page||0;
     data.contents=[];
     data.pages=0;
-    data.limit=10;
+    data.limit=8;
     data.count=0;
 
     var where={};
