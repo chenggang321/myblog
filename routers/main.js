@@ -2,7 +2,20 @@ var express = require('express');
 var router = express.Router();
 var Category=require('../models/Category');
 var Content=require('../models/Content');
+var marked = require('marked');
 var data;
+// marked
+var rendererMD = new marked.Renderer();
+marked.setOptions({
+    renderer: rendererMD,
+    gfm: true,
+    tables: true,
+    breaks: false,
+    pedantic: false,
+    sanitize: false,
+    smartLists: true,
+    smartypants: false
+});//基本设置
 
 /*
 * 处理全局数据
@@ -55,10 +68,10 @@ router.get('/view',function(req,res){
     Content.findOne({
         _id:contentId
     }).then(function(content){
-        console.log(content);
         data.content=content;
         content.views++;
         content.save();
+        data.content.content = marked(content.content);
         res.render('main/view',data);
     });
 });

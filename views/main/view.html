@@ -9,15 +9,8 @@
                 <span class="blog-tag blog-tag--warning"><span class="glyphicon glyphicon-eye-open blog-icon"></span><span>({{content.views}})</span></span>&nbsp;
             <span class="blog-tag blog-tag--danger"><span class="glyphicon glyphicon-comment blog-icon"></span><span>({{content.comments.length}})</span></span>
         </p>
-        <input type="hidden" id="data" value="{{content.content}}"/>
-        <p id="content" style="font-size: 15px"></p>
+        <p id="content" style="font-size: 15px">{% autoescape %}{{ content.content }}{% endautoescape %}</p>
     </div>
-<!--marke编译-->
-<script src="/public/js/marked.js"></script>
-<script>
-    var data=document.getElementById('data').value;
-    document.getElementById('content').innerHTML=marked(data);
-</script>
 <!--评论-->
     <div class="jumbotron blog-card">
         {%if userInfo._id%}

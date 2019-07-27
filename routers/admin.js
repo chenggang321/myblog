@@ -227,7 +227,6 @@ router.post('/category/edit',function(req,res){
     Category.findOne({
         _id:id
     }).then(function(category){
-        console.log(category);
         if(!category){
             res.render('admin/error',{
                 userInfo:req.userInfo,
@@ -374,7 +373,6 @@ router.post('/content/add',function(req,res){
 * 修改内容
 * */
 router.get('/content/edit',function(req,res){
-    console.log(req.body);
     var id=req.query.id||'';
     var categories=[];
     Category.find().sort({_id:1}).then(function(rs){
@@ -402,7 +400,6 @@ router.get('/content/edit',function(req,res){
 * 内容修改的保存
 * */
 router.post('/content/edit',function(req,res){
-    console.log(res);
     var id=req.query.id||'';
     if(req.body.category==''){
         res.render('admin/error',{

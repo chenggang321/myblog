@@ -26,7 +26,6 @@ router.use(function(req,res,next){
 *
 * */
 router.post('/user/register',function(req,res,next){
-    console.log(req.body);
     var username=req.body.username;
     var password=req.body.password;
     var repassword=req.body.repassword;
@@ -63,7 +62,6 @@ router.post('/user/register',function(req,res,next){
     User.findOne({
         username:username
     }).then(function(userInfo){
-        //console.log(userInfo);
         if(userInfo){
             responseData.code = 4;
             responseData.message="用户已注册";
@@ -77,7 +75,6 @@ router.post('/user/register',function(req,res,next){
         });
         return user.save();
     }).then(function(newUserInfo){
-        //console.log(newUserInfo);
         responseData.message="注册成功";
         res.json(responseData);
     });
@@ -91,7 +88,6 @@ router.post('/user/register',function(req,res,next){
 router.post('/user/login',function(req,res,next){
     var username=req.body.username;
     var password=req.body.password;
-    console.log(username,password)
     if(username==''||password==''){
         responseData.code=1;
         responseData.message='用户名和密码不能为空'
@@ -182,7 +178,6 @@ router.post('/search',function(req,res){
             content:content
         }
         responseData.data=postData;
-        console.log(postData);
         res.json(postData);
     })
 });
