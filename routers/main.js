@@ -71,7 +71,6 @@ router.get('/view',function(req,res){
         data.content=content;
         content.views++;
         content.save();
-        data.content.content = marked(content.content);
         res.render('main/view',data);
     });
 });
