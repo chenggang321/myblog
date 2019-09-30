@@ -17,6 +17,7 @@ var app=express();
 
 var compression = require('compression'); // 需要位于 express.static 前面，否则不起作用
 app.use(express.static('public')); // public 文件夹中的静态资源都将被做 gzip 处理
+app.use(compression());
 
 var User=require('./models/Users');
 
