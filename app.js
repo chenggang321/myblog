@@ -15,13 +15,14 @@ var Cookies=require('cookies');
 //创建app应用 =>NodeJs Http.creatServer()
 var app=express();
 
-var compression = require('compression'); // 需要位于 express.static 前面，否则不起作用
+var compression = require('compression');
+app.use(compression()) // 需要位于 express.static 前面，否则不起作用
+app.use(express.static('public')) // public 文件夹中的静态资源都将被做 gzip 处理
 
 var User=require('./models/Users');
 //设置静态文件托管
 //当前用户访问的URL以/public开始，那么直接返回对应__dirname+'/public'下的文件
 app.use('/public',express.static(__dirname+'/public'));
-app.use(compression()); // 开启gzip
 
 //配置应用模板
 //定义当前应用所用的模板引擎
