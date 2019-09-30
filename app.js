@@ -20,9 +20,6 @@ app.use(compression()) // 需要位于 express.static 前面，否则不起作�
 app.use(express.static('public')) // public 文件夹中的静态资源都将被做 gzip 处理
 
 var User=require('./models/Users');
-//设置静态文件托管
-//当前用户访问的URL以/public开始，那么直接返回对应__dirname+'/public'下的文件
-app.use('/public',express.static(__dirname+'/public'));
 
 //配置应用模板
 //定义当前应用所用的模板引擎
@@ -60,11 +57,9 @@ app.use(function(req,res,next){
     }
 
 });
-// 304
-app.use(function(req, res, next){
-    res.header("Cache-Control", "no-cache, no-store, must-revalidate");
-    res.header("Pragma", "no-cache");
-    res.header("Expires", 0);
+
+app.get('/*', function(req, res, next){
+    res.setHeader('Last-Modified', (new Date()).toUTCString());
     next();
 });
 
@@ -74,6 +69,10 @@ app.use(function(req, res, next){
 app.use('/admin',require('./routers/admin'));
 app.use('/api',require('./routers/api'));
 app.use('/',require('./routers/main'));
+
+//设置静态文件托管
+//当前用户访问的URL以/public开始，那么直接返回对应__dirname+'/public'下的文件
+app.use('/public',express.static(__dirname+'/public'));
 
 //连接数据库
 mongoose.connect('mongodb://server.totrip.xin:27017/blog',function(err){
