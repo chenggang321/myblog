@@ -10,6 +10,8 @@ var swig=require('swig');
 var mongoose =require('mongoose');
 //加载body-parser,用来处理post提交过来的数据
 var bodyParser=require('body-parser');
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 //加载cookies模块
 var Cookies=require('cookies');
 //创建app应用 =>NodeJs Http.creatServer()
