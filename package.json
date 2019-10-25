@@ -6,14 +6,27 @@
   "scripts": {
     "start": "node app",
     "dev": "nodemon app",
-    "deploy": "pm2 deploy ecosystem.config.js production"
+    "deploy": "pm2 deploy ecosystem.config.js production",
+    "lint": "prettier --write \"{routers,models,schemas,views}/**/*.{js,html}\""
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "cookies": "^0.6.2",
     "express": "^4.14.0",
-    "nodemon": "^1.19.1"
+    "lint-staged": "^9.4.2",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2",
+    "yorkie": "^2.0.0"
   },
   "dependencies": {
     "body-parser": "^1.15.2",

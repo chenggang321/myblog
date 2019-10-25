@@ -1,46 +1,65 @@
-{%extends 'layout.html'%}
-{%block content%}
-	{%if contents.length !== 0%}
-    <div class="Content" id="ContentBox" style="margin-top:20px;">
-        {%for  content in contents%}
-        <a href="/view?contentId={{content.id}}">
-            <div class="blog-card">
-                <h4>{{content.title}}</h4>
-                <hr style="color:#fff;margin:10px;"/>
-                <p style="font-size: 10px">
-                    <span class="blog-tag blog-tag--info"><span class="glyphicon glyphicon-user blog-icon"></span><span>{{content.user.username}}</span></span>&nbsp;
-                    <span class="blog-tag blog-tag--success"><span class="glyphicon glyphicon-time blog-icon"></span><span>{{content.addTime|date('Y-m-d H:i:s',-8*60)}}</span></span>&nbsp;
-                    <span class="blog-tag blog-tag--warning"><span class="glyphicon glyphicon-eye-open blog-icon"></span><span>({{content.views}})</span></span>&nbsp;
-                    <span class="blog-tag blog-tag--danger"><span class="glyphicon glyphicon-comment blog-icon"></span><span>({{content.comments.length}})</span></span>
-                </p>
-                <p style="font-size: 15px">{{content.description}}</p>
-            </div>
-        </a>
-        {%endfor%}
+{%extends 'layout.html'%} {%block content%} {%if contents.length !== 0%}
+<div class="Content" id="ContentBox" style="margin-top:20px;">
+  {%for content in contents%}
+  <a href="/view?contentId={{content.id}}">
+    <div class="blog-card">
+      <h4>{{content.title}}</h4>
+      <hr style="color:#fff;margin:10px;" />
+      <p style="font-size: 10px">
+        <span class="blog-tag blog-tag--info"
+          ><span class="glyphicon glyphicon-user blog-icon"></span
+          ><span>{{content.user.username}}</span></span
+        >&nbsp;
+        <span class="blog-tag blog-tag--success"
+          ><span class="glyphicon glyphicon-time blog-icon"></span
+          ><span>{{content.addTime|date('Y-m-d H:i:s',-8*60)}}</span></span
+        >&nbsp;
+        <span class="blog-tag blog-tag--warning"
+          ><span class="glyphicon glyphicon-eye-open blog-icon"></span
+          ><span>({{content.views}})</span></span
+        >&nbsp;
+        <span class="blog-tag blog-tag--danger"
+          ><span class="glyphicon glyphicon-comment blog-icon"></span
+          ><span>({{content.comments.length}})</span></span
+        >
+      </p>
+      <p style="font-size: 15px">{{content.description}}</p>
     </div>
-	{%else%}
-        <div class="alert alert-warning" role="alert" style="text-align: center;margin-top:20px;">暂无文章</div>
-    {%endif%}
-	<script src="/public/js/util.js"></script>
-	<script>
-		var page = 1
-		window.onscroll=debounce(function(){
-		// 距离底部200px时加载一次
-		var ContentBox = document.getElementById("ContentBox")
-		if(isReachBottom()){
-			page++
-		  jsGetAjaxPromise(`/?category={{category}}&page=${page}`)
-		  .then(function(res){
-			var tpl = getTemplate(JSON.parse(res).contents);
-			var pages = JSON.parse(res).pages
-			if(page>pages) {
-				window.onscroll = null
-				var nodes = parseToDOM('<div style="text-align:center;"><span>没有文章了！<span></div>')
-				return renderDom(nodes)
-			}
-			renderDom(parseToDOM(tpl))
-		  })
-		}
-		},200)
-	</script>
+  </a>
+  {%endfor%}
+</div>
+{%else%}
+<div
+  class="alert alert-warning"
+  role="alert"
+  style="text-align: center;margin-top:20px;"
+>
+  暂无文章
+</div>
+{%endif%}
+<script src="/public/js/util.js"></script>
+<script>
+  var page = 1
+  window.onscroll = debounce(function() {
+    // 距离底部200px时加载一次
+    var ContentBox = document.getElementById('ContentBox')
+    if (isReachBottom()) {
+      page++
+      jsGetAjaxPromise(`/?category={{category}}&page=${page}`).then(function(
+        res
+      ) {
+        var tpl = getTemplate(JSON.parse(res).contents)
+        var pages = JSON.parse(res).pages
+        if (page > pages) {
+          window.onscroll = null
+          var nodes = parseToDOM(
+            '<div style="text-align:center;"><span>没有文章了！<span></div>'
+          )
+          return renderDom(nodes)
+        }
+        renderDom(parseToDOM(tpl))
+      })
+    }
+  }, 200)
+</script>
 {%endblock%}
