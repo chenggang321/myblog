@@ -4,6 +4,8 @@ FROM node
 ADD . /app/
 #进入到app目录下面，类似cd
 WORKDIR /app
+#镜像选择淘宝的镜像
+RUN npm config set registry=http://registry.npm.taobao.org
 #安装依赖
 RUN npm install
 #对外暴露的端口
