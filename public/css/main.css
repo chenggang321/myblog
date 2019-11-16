@@ -82,17 +82,8 @@ a:hover, a:focus {
 	box-sizing: border-box;
 	white-space: nowrap;
 }
-.blog-tag--success {
-	color: #67c23a;
-}
-.blog-tag--info {
-	color: #909399;
-}
-.blog-tag--warning {
-	color: #e6a23c;
-}
-.blog-tag--danger {
-	color: #f56c6c;
+.blog-tag--primary {
+	color: #409eff;
 }
 
 #categoryBox .list-group-item.active{
