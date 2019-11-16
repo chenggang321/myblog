@@ -100,7 +100,11 @@
 							<li><a href="http://totrip.xin/tetris/tetris%20%E7%B4%A0%E6%9D%90/tetris.html">javascript俄罗斯方块游戏</a></li>
                         </ul>
                     </li>-->
-              <!--<li><a href="javascript:;" onclick="showLogon(this)">登陆与注册</a></li>-->
+              <li>
+                  <a role="button" data-toggle="collapse" href="#loginAndRegisterBox" aria-expanded="false" aria-controls="loginAndRegisterBox">
+                  登陆
+              </a>
+              </li>
             </ul>
           </div>
           <!-- /.navbar-collapse -->
@@ -115,7 +119,7 @@
       <hr />
       <div class="row">
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-          <div class="hidden-xs" id="loginAndRegisterBox" style="margin-top:20px;">
+          <div class="collapse" id="loginAndRegisterBox" style="margin-top:20px;">
             {%if userInfo._id%}
             <div class="panel panel-default" id="userInfo">
               <div class="panel-heading">用户信息</div>
