@@ -80,7 +80,7 @@ app.use('/public', express.static(__dirname + '/public'))
 
 //连接数据库
 mongoose.connect(
-  'mongodb://anlleyun.com:27017/blog',
+  'mongodb://totrip.xin:27017/blog',
   {
     user: 'blog',
     pass: '1129137164@qq.com',
