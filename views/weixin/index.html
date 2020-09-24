@@ -248,8 +248,7 @@
                 });
 
                 $.ajax({
-                    type:'get',
-                  url:'https://open.weixin.qq.com/connect/oauth2/authorize?appid='+res.appId+'&redirect_uri='+encodeURI('http://totrip.xin/demo')+'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
+                  url:'/getuser'
                 })
             }
         });
