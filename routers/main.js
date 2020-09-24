@@ -4,6 +4,10 @@ var router = express.Router()
 var Category = require('../models/Category')
 var Content = require('../models/Content')
 var marked = require('marked')
+var config = require('../config')
+var request = require('request'),
+  cache = require('memory-cache'),
+  sha1 = require('sha1')
 var data
 // marked
 var rendererMD = new marked.Renderer()
@@ -86,6 +90,7 @@ router.get('/view', function(req, res) {
 })
 
 // 微信sdk
+// 验证服务器
 router.get('/weixin', function(req, res) {
   //1.获取微信服务器Get请求的参数 signature、timestamp、nonce、echostr
   var signature = req.query.signature, //微信加密签名
@@ -94,7 +99,7 @@ router.get('/weixin', function(req, res) {
     echostr = req.query.echostr //随机字符串
 
   //2.将token、timestamp、nonce三个参数进行字典序排序
-  var array = ['test', timestamp, nonce]
+  var array = [config.token, timestamp, nonce]
   array.sort()
 
   //3.将三个参数字符串拼接成一个字符串进行sha1加密
@@ -108,6 +113,84 @@ router.get('/weixin', function(req, res) {
   } else {
     res.send('mismatch')
   }
+})
+
+// 获取签名
+router.get('/getsign', function(req, res) {
+  var url = 'http://totrip.xin/demo'
+  var noncestr = '123456',
+    timestamp = Math.floor(Date.now() / 1000), //精确到秒
+    jsapi_ticket
+  var obj = {}
+  if (cache.get('ticket')) {
+    jsapi_ticket = cache.get('ticket')
+    // console.log('1' + 'jsapi_ticket=' + jsapi_ticket + '&noncestr=' + noncestr + '&timestamp=' + timestamp + '&url=' + url);
+    obj = {
+      appId: config.appID,
+      noncestr: noncestr,
+      timestamp: timestamp,
+      url: url,
+      jsapi_ticket: jsapi_ticket,
+      signature: sha1(
+        'jsapi_ticket=' +
+          jsapi_ticket +
+          '&noncestr=' +
+          noncestr +
+          '&timestamp=' +
+          timestamp +
+          '&url=' +
+          url
+      )
+    }
+    res.send(obj)
+  } else {
+    request(
+      'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' +
+        config.appID +
+        '&secret=' +
+        config.appSecret,
+      function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+          console.log(body)
+          var tokenMap = JSON.parse(body)
+          request(
+            'https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' +
+              tokenMap.access_token +
+              '&type=jsapi',
+            function(error, resp, json) {
+              if (!error && response.statusCode == 200) {
+                var ticketMap = JSON.parse(json)
+                cache.put('ticket', ticketMap.ticket, 1000 * 60 * 60 * 24) //加入缓存
+                // console.log('jsapi_ticket=' + ticketMap.ticket + '&noncestr=' + noncestr + '&timestamp=' + timestamp + '&url=' + url);
+                obj = {
+                  appId: config.appID,
+                  noncestr: noncestr,
+                  timestamp: timestamp,
+                  url: url,
+                  jsapi_ticket: ticketMap.ticket,
+                  signature: sha1(
+                    'jsapi_ticket=' +
+                      ticketMap.ticket +
+                      '&noncestr=' +
+                      noncestr +
+                      '&timestamp=' +
+                      timestamp +
+                      '&url=' +
+                      url
+                  )
+                }
+                res.send(obj)
+              }
+            }
+          )
+        }
+      }
+    )
+  }
+})
+
+router.get('/demo', function(req, res) {
+  res.render('weixin/index')
 })
 
 module.exports = router

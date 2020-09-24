@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8" />
+    <title>title</title>
+    <link rel="stylesheet" href="/public/css/main.css" />
+  </head>
+  <body>
+    <h1>欢迎光临我的博客！！</h1>
+    <script src="/public/js/jquery-1.11.3.js"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
+    <script>
+        $.ajax({
+            url:'/getsign',
+            success:function(res){
+                console.log(res);
+                wx.config({
+                    debug: true, // 开启调试模式
+                    appId: res.appId, // 必填，公众号的唯一标识
+                    timestamp: res.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: res.noncestr, // 必填，生成签名的随机串
+                    signature: res.signature,// 必填，签名，见附录1
+                    jsApiList: ['chooseImage',
+                        'previewImage',
+                        'uploadImage',
+                        'downloadImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+            }
+        });
+    </script>
+  </body>
+</html>
