@@ -276,13 +276,8 @@
                     ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
                 });
 
-                $.ajax({
-                    url: '/getuser',
-                    success: function (res) {
-                      console.log(res)
-                    }
-                })
-            }
+                // https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf8669c8e8bd05427&redirect_uri=http%3A%2F%2Ftotrip.xin%2Fdemo&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect
+                }
         });
     </script>
 </head>

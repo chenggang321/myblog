@@ -189,20 +189,6 @@ router.get('/getsign', function(req, res) {
   }
 })
 
-// 获取用户id
-router.get('/getuser', function(req, res) {
-  request(
-    'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' +
-      config.appID +
-      '&redirect_uri=' +
-      encodeURI('http://totrip.xin/demo') +
-      '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect',
-    function(error, response, body) {
-      res.render(body)
-    }
-  )
-})
-
 router.get('/demo', function(req, res) {
   res.render('weixin/index')
 })
