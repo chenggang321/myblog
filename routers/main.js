@@ -84,11 +84,11 @@ router.get('/view', function(req, res) {
   })
 })
 
-// 微信sdk
+/*// 微信sdk
 router.get('/weixin', function(req, res) {
   res.json({
     success: true
   })
-})
+})*/
 
 module.exports = router
