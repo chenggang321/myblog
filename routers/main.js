@@ -198,7 +198,7 @@ router.get('/getuser', function(req, res) {
       encodeURI('http://totrip.xin/demo') +
       '&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect',
     function(error, response, body) {
-      console.log(body)
+      res.send(body)
     }
   )
 })
