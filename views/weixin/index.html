@@ -59,11 +59,10 @@
                 localId: []
             };
             document.querySelector('#chooseImage').onclick = function () {
-
                 wx.chooseImage({
                     success: function (res) {
                         images.localId = res.localIds;
-                        alert('已选择 ' + res.localIds.length + ' 张图片');
+                        alert(res.localIds + '已选择 ' + res.localIds.length + ' 张图片');
                     },
                     error:function(res){
                         alert("error")
