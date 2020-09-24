@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="/public/css/main.css" />
   </head>
   <body>
-    <h1>欢迎光临我的博客！！</h1>
     <script src="/public/js/jquery-1.11.3.js"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>
     <script>
@@ -27,6 +26,52 @@
                 });
             }
         });
+    </script>
+
+    <button class="btn btn_primary" id="checkJsApi">checkJsApi</button>
+    <h3 id="menu-image">图像接口</h3>
+    <span class="desc">拍照或从手机相册中选图接口</span>
+    <button class="btn btn_primary" id="chooseImage">chooseImage</button>
+
+    <script>
+        wx.error(function(res){
+            console.log(JSON.stringify(res))
+        })
+        wx.ready(function () {
+            // 1 判断当前版本是否支持指定 JS 接口，支持批量判断
+            document.querySelector('#checkJsApi').onclick = function () {
+                wx.checkJsApi({
+                    jsApiList: [
+                        'chooseImage',
+                        'previewImage',
+                        'uploadImage',
+                        'downloadImage'
+                    ],
+                    success: function (res) {
+                        alert(JSON.stringify(res));
+                    }
+                });
+            };
+
+            // 5 图片接口
+            // 5.1 拍照、本地选图
+            var images = {
+                localId: []
+            };
+            document.querySelector('#chooseImage').onclick = function () {
+
+                wx.chooseImage({
+                    success: function (res) {
+                        images.localId = res.localIds;
+                        alert('已选择 ' + res.localIds.length + ' 张图片');
+                    },
+                    error:function(res){
+                        alert("error")
+                        alert("res")
+                    }
+                });
+            };
+        })
     </script>
   </body>
 </html>
