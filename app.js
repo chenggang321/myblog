@@ -3,6 +3,10 @@
  * */
 //加载express模块
 var express = require('express')
+// http 模块
+var http = require('http')
+var https = require('https')
+var fs = require('fs')
 
 //加载模板处理模块
 var swig = require('swig')
@@ -92,7 +96,13 @@ mongoose.connect(
     } else {
       console.log('数据库连接成功')
       //监听http请求
-      app.listen(80)
+      http.createServer(app).listen(80)
+      // 监听https
+      var httpsOption = {
+        key: fs.readFileSync('./ssl/Nginx/2_www.totrip.xin.key'),
+        cert: fs.readFileSync('./ssl/Nginx/1_www.totrip.xin_bundle.crt')
+      }
+      https.createServer(httpsOption, app).listen(443)
     }
   }
 )
