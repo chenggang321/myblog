@@ -9,6 +9,6 @@ RUN npm config set registry=http://registry.npm.taobao.org
 #安装依赖
 RUN npm install
 #对外暴露的端口
-EXPOSE 80
+EXPOSE 80 443
 #程序启动脚本
 CMD ["npm", "start"]
