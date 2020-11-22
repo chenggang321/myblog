@@ -85,11 +85,11 @@ app.use('/public', express.static(__dirname + '/public'))
 //连接数据库
 mongoose.connect(
   'mongodb://totrip.xin:27017/blog',
-  {
-    user: 'blog',
-    pass: '1129137164@qq.com',
-    useMongoClient: true
-  },
+  // {
+  //   user: 'blog',
+  //   pass: '1129137164@qq.com',
+  //   useMongoClient: true
+  // },
   function(err) {
     if (err) {
       console.log('数据库连接失败')
