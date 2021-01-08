@@ -95,8 +95,13 @@ mongoose.connect(
       console.log('数据库连接失败')
     } else {
       console.log('数据库连接成功')
-      //监听http请求
-      http.createServer(app).listen(80)
+      //监听http请求重定向到https
+      http
+        .createServer((req, res) => {
+          res.writeHead(301, { Location: 'https://totrip.xin/' })
+          res.end()
+        })
+        .listen(80)
       // 监听https
       var httpsOption = {
         key: fs.readFileSync('./ssl/Nginx/2_www.totrip.xin.key'),
