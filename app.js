@@ -104,8 +104,8 @@ mongoose.connect(
         .listen(80)
       // 监听https
       var httpsOption = {
-        key: fs.readFileSync('./ssl/Nginx/2_www.totrip.xin.key'),
-        cert: fs.readFileSync('./ssl/Nginx/1_www.totrip.xin_bundle.crt')
+        key: fs.readFileSync('./ssl/Nginx/5063496_totrip.xin.key'),
+        cert: fs.readFileSync('./ssl/Nginx/5063496_totrip.xin.pem')
       }
       https.createServer(httpsOption, app).listen(443)
     }
